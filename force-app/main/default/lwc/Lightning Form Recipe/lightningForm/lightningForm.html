@@ -1,0 +1,89 @@
+<template>
+    <form>
+        <lightning-layout multiple-rows={multipleRows} horizontal-align="stretch">
+            <template for:each={columns} for:item="column" >
+                <lightning-layout-item key={column.id} flexibility={flexibility} >
+                    <div class={column.class}>
+                    <template for:each={column.fields} for:item="field">
+                        <lightning-layout-item key={field.key} size="12">
+                            <div class={field.class}>
+
+
+                                <template if:true={field.isRepeater}>
+                                    <c-repeater-field style="width:100%;" 
+                                        required={field.required}
+                                        disabled={field.readonly} 
+                                        first-label={field.firstLabel}
+                                        repeat-variant={field.repeatVariant} 
+                                        type={field.repeaterType} 
+                                        formatter={field.formatter}
+                                        read-only={field.readonly}
+                                        data-key={field.key}
+                                    >
+                                    </c-repeater-field>
+                                </template>
+
+
+                                <template if:true={field.isRepeaterGroup}>
+                                    <c-repeater-field-group style="width:100%;" 
+                                        configuration={field.configuration}
+                                        read-only={field.readonly}
+                                        required={field.required}
+                                        disabled={field.readonly}
+                                        data-key={field.configuration.key}
+                                    >
+                                    </c-repeater-field-group>
+                                </template>
+
+
+                                <template if:true={field.isPicklist}>
+                                    <lightning-combobox
+                                        required={field.required}
+                                        readonly={field.readonly}
+                                        disabled={field.disabled} 
+                                        label={field.label}
+                                        options={field.options}
+                                        data-key={field.key}
+                                    ></lightning-combobox>
+                                </template>
+
+
+                                <template if:true={field.isInput}>
+                                    <lightning-input 
+                                        required={field.required}
+                                        readonly={field.readonly} 
+                                        disabled={field.readonly} 
+                                        label={field.label} 
+                                        data-key={field.key}
+                                        formatter={field.formatter}
+                                        type={field.type}
+                                        step={field.step}
+                                    >
+                                    </lightning-input>
+                                </template>
+
+                                
+                                <template if:true={field.isForm}>
+                                    <c-lightning-form
+                                        columns={field.columns}
+                                        data-key={field.key}
+                                        multiple-rows={field.multipleRows}
+                                        flexibility="auto"
+                                    ></c-lightning-form>
+                                </template>
+
+
+                                <template if:true={field.isPlaceholder}>
+                                    <lightning-input readonly disabled label="  &nbsp;  "></lightning-input>
+                                </template>
+
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                    </div>
+                    <slot name="footer"></slot>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </form>
+</template>

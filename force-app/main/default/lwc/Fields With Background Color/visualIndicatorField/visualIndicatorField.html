@@ -1,0 +1,16 @@
+<template>
+    <template if:true={isNumberRangeTrafficField}>
+        <div class="slds-m-bottom_small">
+        <c-number-range-traffic-light-field 
+            key={fieldConfiguration.label}
+            label={fieldConfiguration.label}
+            value={value}
+            red-yellow-boundary={fieldConfiguration.redYellowBoundary}
+            yellow-green-boundary={fieldConfiguration.yellowGreenBoundary}
+            is-red-to-green-descending={fieldConfiguration.isRedToGreenDescending}
+            output-format={fieldConfiguration.outputFormat}
+            output-override={fieldConfiguration.outputOverride}
+        ></c-number-range-traffic-light-field> 
+        </div>
+    </template>
+</template>

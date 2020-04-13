@@ -1,0 +1,59 @@
+<template>
+    <template if:false={hide}>
+        <template iterator:input={valuesObjects}>
+            <lightning-layout key={input.value.key}>
+                <lightning-layout-item flexibility="auto">
+                    <lightning-layout vertical-align="end" >
+                        <template if:true={input.first}>
+                            <lightning-layout-item flexibility="auto">
+                                <lightning-input 
+                                    data-key={input.value.key}
+                                    required={required} 
+                                    label={firstLabel} 
+                                    variant={firstVariant}
+                                    disabled={disabled}
+                                    readonly={readOnly}
+                                    type={type}
+                                    formatter={formatter}
+                                    value={input.value.value}
+                                ></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item>
+                                <lightning-button-icon 
+                                    class={buttonClass}
+                                    icon-name="utility:add"
+                                    onclick={_addInput}
+                                    disabled={disabledOrReadOnly}
+                                ></lightning-button-icon>
+                            </lightning-layout-item>
+                        </template>
+                        <template if:false={input.first}>
+                            <lightning-layout-item flexibility="auto">
+                                <lightning-input 
+                                    data-key={input.value.key}
+                                    required={required}
+                                    label={repeatLabel} 
+                                    variant={repeatVariant}
+                                    disabled={disabled}
+                                    readonly={readOnly}
+                                    type={type}
+                                    formatter={formatter}
+                                    value={input.value.value}
+                                ></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item>
+                                <lightning-button-icon 
+                                    class={buttonClass}
+                                    data-key={input.index}
+                                    icon-name="utility:close"
+                                    onclick={_removeInput}
+                                    disabled={disabledOrReadOnly}
+                                ></lightning-button-icon>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+    </template>
+</template>

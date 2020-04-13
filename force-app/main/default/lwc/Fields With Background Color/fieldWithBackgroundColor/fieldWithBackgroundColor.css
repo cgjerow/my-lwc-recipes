@@ -1,0 +1,19 @@
+.field-label {
+  padding: 0 0.5rem;
+  max-width: calc(40% - 1.25rem);
+  min-width: calc(40% - 1.25rem);
+}
+
+.field-input-container {
+  padding: 0 .5rem;
+}
+
+.field-output {
+  background-color: var(--color-background);
+  color: var(--color-font);
+  padding: .5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: .5rem;
+  text-align: center;
+}

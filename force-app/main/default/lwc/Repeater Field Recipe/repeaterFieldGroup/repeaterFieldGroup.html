@@ -1,0 +1,105 @@
+<template>
+    <template iterator:inputgroup={valuesObjects}>
+        <lightning-layout class="repeater-input-group" key={inputgroup.value.value.key}>
+            <lightning-layout-item flexibility="auto">
+                <lightning-layout vertical-align="end">
+                    <template if:true={inputgroup.first}>
+                        <template iterator:input={inputgroup.value.value.inputs}>
+                            <template if:true={input.value.isCheckbox}>
+                                <lightning-layout-item key={input.value.key} flexibility="auto,no-grow">
+                                    <p class="slds-form-element__label slds-p-top_small">{input.value.firstLabel}</p>
+                                    <lightning-input
+                                        data-key={input.value.key}
+                                        data-checkbox="true"
+                                        required={input.value.required} 
+                                        label={input.value.firstLabel} 
+                                        disabled={disabled}
+                                        readonly={readOnly}
+                                        type={input.value.type}
+                                        formatter={input.value.formatter}
+                                        checked={input.value.checked}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                            </template>
+                            <template if:false={input.value.isCheckbox}>
+                                <lightning-layout-item key={input.value.key} flexibility="auto">
+                                    <lightning-input
+                                        data-key={input.value.key}
+                                        required={input.value.required} 
+                                        label={input.value.firstLabel} 
+                                        variant={input.value.firstVariant}
+                                        disabled={disabled}
+                                        readonly={readOnly}
+                                        type={input.value.type}
+                                        formatter={input.value.formatter}
+                                        value={input.value.value}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                                <lightning-layout-item key={input.value.key}>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                </lightning-layout-item>
+                            </template>
+                        </template>
+                        <lightning-layout-item>
+                            <lightning-button-icon 
+                                class={buttonClass}
+                                icon-name="utility:add"
+                                onclick={_addInput}
+                                disabled={disabledOrReadOnly}
+                            ></lightning-button-icon>
+                        </lightning-layout-item>
+                    </template>
+                    <template if:false={inputgroup.first}>
+                        <template iterator:input={inputgroup.value.value.inputs}>
+                            <template if:true={input.value.isCheckbox}>
+                                <lightning-layout-item key={input.value.key} flexibility="auto,no-grow">
+                                    <lightning-input 
+                                        data-key={input.value.key}
+                                        data-checkbox="true"
+                                        required={input.value.required} 
+                                        label={input.value.repeatLabel} 
+                                        variant={input.value.repeatVariant}
+                                        disabled={disabled}
+                                        readonly={readOnly}
+                                        type={input.value.type}
+                                        formatter={input.value.formatter}
+                                        checked={input.value.checked}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                                &nbsp;
+
+                            </template>
+                            <template if:false={input.value.isCheckbox}>
+                                <lightning-layout-item key={input.value.key} flexibility="auto">
+                                    <lightning-input 
+                                        data-key={input.value.key}
+                                        required={input.value.required} 
+                                        label={input.value.repeatLabel} 
+                                        variant={input.value.repeatVariant}
+                                        disabled={disabled}
+                                        readonly={readOnly}
+                                        type={input.value.type}
+                                        formatter={input.value.formatter}
+                                        value={input.value.value}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                            </template>
+                            <lightning-layout-item key={input.value.key}>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </lightning-layout-item>
+                        </template>
+                        <lightning-layout-item>
+                            <lightning-button-icon 
+                                class={buttonClass}
+                                data-key={inputgroup.index}
+                                icon-name="utility:close"
+                                onclick={_removeInput}
+                                disabled={disabledOrReadOnly}
+                            ></lightning-button-icon>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+</template>

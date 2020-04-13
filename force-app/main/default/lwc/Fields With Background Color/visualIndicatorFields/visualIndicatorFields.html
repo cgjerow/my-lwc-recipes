@@ -1,0 +1,18 @@
+<template>
+    <article class="slds-card slds-p-around_small">
+        <div class="slds-section slds-is-open">
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-truncate slds-p-horizontal_small" title="Section Title">{title}</div>
+            </h3>
+            <div aria-hidden="false" class="slds-section__content slds-card__body slds-grid slds-gutters slds-wrap">
+                <template for:each={fields} for:item="field">
+                    <c-visual-indicator-field   class="slds-col slds-size_1-of-2"
+                                                key={field.apiName}
+                                                value={field.value}
+                                                field-configuration={field}
+                    ></c-visual-indicator-field>
+                </template>
+            </div>
+        </div>
+    </article>
+</template>

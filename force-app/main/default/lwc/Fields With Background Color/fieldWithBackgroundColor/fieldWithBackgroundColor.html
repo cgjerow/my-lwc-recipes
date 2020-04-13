@@ -1,0 +1,19 @@
+<template>
+    <article>
+        <template if:true={label}>
+            <label class="slds-form-element__label field-label">{label}</label>
+        </template>
+        <template if:true={value}>
+            <template if:false={editable}>
+                <span class="slds-form-element__control field-input-container">
+                    <input readonly class="field-output" value={output} size={outputSize} />
+                </span>
+            </template>
+            <template if:true={editable}>
+                <span class="slds-form-element__control field-input-container">
+                    <input class="field-output" value={output} size={outputSize} />
+                </span>
+            </template>
+        </template>
+    </article>
+</template>
