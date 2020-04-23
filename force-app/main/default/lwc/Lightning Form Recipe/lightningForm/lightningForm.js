@@ -18,6 +18,7 @@ export default class LightningForm extends LightningElement
                 field = Object.assign({},field);
                 field.isRepeater = field.type == 'repeater';
                 field.isRepeaterGroup = field.type == 'repeaterGroup';
+                field.isTrendIndicator = field.type == 'trendIndicator';
                 field.isPicklist = field.type == 'picklist';
                 field.isPlaceholder = field.type == 'placeholder';
                 field.isForm = field.type == 'form';
@@ -46,7 +47,7 @@ export default class LightningForm extends LightningElement
             element.value = value ? value[element.dataset.key] : '';
         }
     }
-    @api flexibility;
+    @api flexibility = 'auto';
     @track _columns;
     _value;
     _inputTypes = ['checkbox', 'date', 'datetime', 'time', 'email', 'file', 'password', 'search', 'tel', 'url', 'number', 'radio', 'toggle']
@@ -79,9 +80,11 @@ export default class LightningForm extends LightningElement
         let elements = [];
         elements.push(...this.template.querySelectorAll('lightning-input'));
         elements.push(...this.template.querySelectorAll('lightning-combobox'));
-        elements.push(...this.template.querySelectorAll('c-repeater-field'));
+        elements.push(...this.template.querySelectorAll('c-trend-field'));
         elements.push(...this.template.querySelectorAll('c-lightning-form'));
+        elements.push(...this.template.querySelectorAll('c-repeater-field'));
         elements.push(...this.template.querySelectorAll('c-repeater-field-group'));
+
         return elements;
     }
 }
